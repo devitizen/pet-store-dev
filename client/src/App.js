@@ -68,6 +68,7 @@ function Pets() {
   function addPet() {
       let url = baseUrl + "/api?act=add&animal=" + animal + "&description=" + description +
           "&age=" + age + "&price=" + price;
+        console.log(url);
       fetch(url)
           .then(res => res.json())
           .then(
@@ -80,6 +81,7 @@ function Pets() {
   // Deletes a pet from the pet inventory
   function deletePet(id) {
       let url = baseUrl + "/api?act=delete&id=" + id;
+      console.log(url);
       fetch(url)
           .then(res => res.json())
           .then(
@@ -89,7 +91,7 @@ function Pets() {
   }
 
   // Updates a pet in the pet inventory
-    function updatePet() {
+    function updatePet(id) {
         let url = baseUrl + "/api?act=update&id=" + id + "&animal=" + animal +
             "&description=" + description + "&age=" + age + "&price=" + price;
         console.log(url);
