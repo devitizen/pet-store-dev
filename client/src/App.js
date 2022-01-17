@@ -91,7 +91,7 @@ function Pets() {
   }
 
   // Updates a pet in the pet inventory
-    function updatePet(id) {
+    function updatePet() {
         let url = baseUrl + "/api?act=update&id=" + id + "&animal=" + animal +
             "&description=" + description + "&age=" + age + "&price=" + price;
         console.log(url);
@@ -197,7 +197,7 @@ function Pets() {
         </TableContainer>
 
         <Dialog open={open} onClose={closeDialog}>
-            <Box component="form" onSubmit={id === 0 ? addPet : () => updatePet(id)} sx={{p: "10px"}} >
+            <Box component="form" onSubmit={updatePet} sx={{p: "10px"}} >
                 <DialogTitle>{id === 0 ? "Add new pet" : "Edit pet"}</DialogTitle>
                 <DialogContent>
                     <Grid item xs={12}>
