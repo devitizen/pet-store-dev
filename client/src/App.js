@@ -50,7 +50,7 @@ function Pets() {
   // fetches all pet data from the server
   function fetchPets() {
       console.log(getAllUrl);
-      fetch(getAllUrl)
+      fetch(getAllUrl, {mode: 'cors'})
           .then(res => res.json())
           .then(
               (result) => {
