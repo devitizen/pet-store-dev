@@ -95,13 +95,13 @@ function Pets() {
         let url = baseUrl + "/api?act=update&id=" + id + "&animal=" + animal +
             "&description=" + description + "&age=" + age + "&price=" + price;
         console.log(url);
-        fetch(url)
-            .then(res => res.json())
-            .then(
-                (result) => {
-                    fetchPets();
-                    closeDialog();
-                });
+        // fetch(url)
+        //     .then(res => res.json())
+        //     .then(
+        //         (result) => {
+        //             fetchPets();
+        //             closeDialog();
+        //         });
     }
   
   // Searches for pets in the pet inventory
