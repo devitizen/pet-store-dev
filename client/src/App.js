@@ -50,8 +50,11 @@ function Pets() {
   // fetches all pet data from the server
   function fetchPets() {
       console.log(getAllUrl);
-      fetch(getAllUrl, {mode: 'cors'})
+      fetch(getAllUrl)
           .then(res => res.json())
+          .catch((error) => {
+              console.error("Error in fetching data : ", error)
+          })
           .then(
               (result) => {
                   setIsLoaded(true);
