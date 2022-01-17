@@ -39,7 +39,7 @@ function Pets() {
   const [price, setPrice] = useState(0);
   const [open, setOpen] = useState(false);
   
-  const baseUrl = "http://localhost:5000";
+  const baseUrl = "https://pet-store-dev.heroku.com";
   const getAllUrl = baseUrl + "/api?act=getall";
   const colorTheme = createTheme({
       palette: {
