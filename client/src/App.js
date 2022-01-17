@@ -39,7 +39,7 @@ function Pets() {
   const [price, setPrice] = useState(0);
   const [open, setOpen] = useState(false);
   
-  const baseUrl = "https://pet-store-dev.heroku.com";
+  const baseUrl = "";
   const getAllUrl = baseUrl + "/api?act=getall";
   const colorTheme = createTheme({
       palette: {
@@ -52,9 +52,6 @@ function Pets() {
       console.log(getAllUrl);
       fetch(getAllUrl)
           .then(res => res.json())
-          .catch((error) => {
-              console.error("Error in fetching data : ", error)
-          })
           .then(
               (result) => {
                   setIsLoaded(true);
