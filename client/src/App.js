@@ -92,6 +92,7 @@ function Pets() {
     function updatePet() {
         let url = baseUrl + "/api?act=update&id=" + id + "&animal=" + animal +
             "&description=" + description + "&age=" + age + "&price=" + price;
+        console.log(url);
         fetch(url)
             .then(res => res.json())
             .then(
@@ -104,6 +105,7 @@ function Pets() {
   // Searches for pets in the pet inventory
   function searchPet(searchTerm) {
       let url = baseUrl + "/api?act=search&term=" + searchTerm;
+      console.log(url);
       fetch(url)
           .then(res => res.json())
           .then(
