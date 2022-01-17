@@ -15,7 +15,9 @@ var cors = require('cors');
 const { path } = require("express/lib/application");
 
 // accept requests from any origin
-app.use(cors({origin: '*'}));
+//app.use(cors({origin: '*'}));
+app.use(cors());
+	
 
 // startup a collection of data to manage
 db.serialize(function(){
