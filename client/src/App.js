@@ -39,17 +39,18 @@ function Pets() {
   const [price, setPrice] = useState(0);
   const [open, setOpen] = useState(false);
   
-  const baseUrl = "";
-  const getAllUrl = baseUrl + "/api?act=getall";
+  const getAllUrl = "/api?act=getall";
   const colorTheme = createTheme({
       palette: {
-          neutral: {main: '#64748B', contrastText: '#fff'}
+          neutral: {
+              main: '#64748B',
+              contrastText: '#fff'
+          }
       }
   });
- 
+
   // fetches all pet data from the server
   function fetchPets() {
-      console.log(getAllUrl);
       fetch(getAllUrl)
           .then(res => res.json())
           .then(
@@ -58,17 +59,17 @@ function Pets() {
                   setPets(result);
               });
   }
-  
+
   // use fetchPets as an effect with an empty array as a 2nd argument, which 
   // means fetchPets will ONLY be called when the component first mounts
   useEffect(fetchPets, []);
 
-  
+
   // Adds a pet to the pet inventory
-  function addPet() {
-      let url = baseUrl + "/api?act=add&animal=" + animal + "&description=" + description +
-          "&age=" + age + "&price=" + price;
-        console.log(url);
+  function addPet(e) {
+      e.preventDefault();
+      let url = "/api?act=add&animal=" + animal + "&description=" + description + "&age=" + age + 
+                "&price=" + price;
       fetch(url)
           .then(res => res.json())
           .then(
@@ -80,8 +81,7 @@ function Pets() {
 
   // Deletes a pet from the pet inventory
   function deletePet(id) {
-      let url = baseUrl + "/api?act=delete&id=" + id;
-      console.log(url);
+      let url = "/api?act=delete&id=" + id;
       fetch(url)
           .then(res => res.json())
           .then(
@@ -91,24 +91,22 @@ function Pets() {
   }
 
   // Updates a pet in the pet inventory
-    function updatePet(e) {
-        e.preventDefault();
-        let url = baseUrl + "/api?act=update&id=" + id + "&animal=" + animal +
-            "&description=" + description + "&age=" + age + "&price=" + price;
-        console.log(url);
-        // fetch(url)
-        //     .then(res => res.json())
-        //     .then(
-        //         (result) => {
-        //             fetchPets();
-        //             closeDialog();
-        //         });
-    }
-  
+  function updatePet(e) {
+      e.preventDefault();
+      let url = "/api?act=update&id=" + id + "&animal=" + animal + "&description=" + description + 
+                "&age=" + age + "&price=" + price;
+      fetch(url)
+          .then(res => res.json())
+          .then(
+              (result) => {
+                  fetchPets();
+                  closeDialog();
+              });
+  }
+
   // Searches for pets in the pet inventory
   function searchPet(searchTerm) {
-      let url = baseUrl + "/api?act=search&term=" + searchTerm;
-      console.log(url);
+      let url = "/api?act=search&term=" + searchTerm;
       fetch(url)
           .then(res => res.json())
           .then(
@@ -198,7 +196,7 @@ function Pets() {
         </TableContainer>
 
         <Dialog open={open} onClose={closeDialog}>
-            <Box component="form" onSubmit={updatePet} sx={{p: "10px"}} >
+            <Box component="form" onSubmit={id === 0 ? addPet : updatePet} sx={{p: "10px"}} >
                 <DialogTitle>{id === 0 ? "Add new pet" : "Edit pet"}</DialogTitle>
                 <DialogContent>
                     <Grid item xs={12}>

@@ -37,10 +37,8 @@ db.serialize(function(){
 });
 
 
-// Make the backend available at localhost:3001/api
-app.get("/api",
-  function(req,res)
-  {
+// Make the backend available
+app.get("/api", function(req,res) {
 	
 	// log to console that an api request has been received
     console.log("API REQUEST RECEIVED");
@@ -180,20 +178,15 @@ app.get("/api",
 
 });
 
-//catch all case if no route found
-// app.get('*',function (req, res) {
-//   res.json({'error': 'route not found'});
-// });
-
+// use static files
 app.use(express.static('client/build'));
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/client/build/index.html');
 });
 
-// set port
-const port = process.env.PORT || 5000;
 
 // run the server
+const port = process.env.PORT || 5000;
 app.listen(port, () => 
     console.log("Pet Store Server running on port: ", port)
 );
