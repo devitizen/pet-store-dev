@@ -91,7 +91,8 @@ function Pets() {
   }
 
   // Updates a pet in the pet inventory
-    function updatePet() {
+    function updatePet(e) {
+        e.preventDefault();
         let url = baseUrl + "/api?act=update&id=" + id + "&animal=" + animal +
             "&description=" + description + "&age=" + age + "&price=" + price;
         console.log(url);
